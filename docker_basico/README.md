@@ -114,7 +114,7 @@ Vale ressaltar que o mapeamento de portas é semelhante para qualquer outro serv
 
 ### Mapeamento de Pasta Diretórios.
 
-No diretório que vocês estiver trabalhando crie um arquivo que index.html e insira alguma informação nele.
+No diretório que você estiver trabalhando crie um arquivo chamado index.html e insira alguma informação de teste.
 Vamos alterar a tela padrão do NGINX.
 
 `docker run -p 8080:80 -v $(pwd):/usr/share/nginx/html -d --name testeNGINX nginx`
@@ -139,3 +139,18 @@ heliezer@hel:~/developer/study/docker_learning/docker_basico/test_Volume/html$ c
 ```
 
 Agora podemos ver que o conteúdo do html esta diferente do padrão do NGINX.
+
+
+### Comandos Gerais
+
+`docker start testeNGINX`
+Neste caso inicia o container com a mesma configuração anteriormente realizada pelo Docker Run.
+
+`docker logs testeNGINX`
+Mostra os logs desde a ultima inicialização do container.
+
+`docker inspect testeNGINX`
+Mostra todas configurações realizadas naquele container.
+
+`docker image ls`
+Lista todas imagens presente no seu localhost.
