@@ -50,3 +50,62 @@ There is NO WARRANTY, to the extent permitted by law.
 
 Como foi pedido para somente verificar a versão do bash, o container é finalizado logo a execução do comando `bash --version`
 
+### Comando Run
+
+#### Criando Container nome único
+
+Um dos conceitos importantes do comando run é que ele sempre cria um novo container, os containers na sua maquina precisam sempre ter nomes únicos.
+
+`docker run --name myubuntu -it ubuntu bash`
+
+Comando acima criou um container com nome myubuntu, e entramos nele para interagir com seu bash, podemos instalar pelo bash novos pacotes, e realizar a configuração que achar necessária.
+
+```
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+444d0766e541   ubuntu         "bash"                   10 minutes ago   Exited (0) 9 minutes ago              myubuntu
+
+
+``` 
+#### Reutilizando container criado pelo Run
+
+`docker start -ai myubuntu`
+
+O comando `start -ai` permite você interagir com container criado anteriormente.
+
+
+### Mapeamento de portas com NGNIX.
+
+`docker run --name testeNGINX -p 8080:80 -d nginx`
+
+Criamos um container com nome testeNGINX utilizando comando --name.
+Deixamos exposto a porta 8080 utilizando -p 8080:80, 8080 é a porta para acesso externo e 80 e porta que vai ser iniciado o serviço do NGINX.
+O -d informa para o serviço iniciar em modo daemon, background.
+
+```
+heliezer@hel:~/developer/study/docker_learning$ curl http://localhost:8080
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+```
+Podemos testar se deu certo acessando localhost:8080 `curl http://localhost:8080`, se a resposta devolver o html básico do NGINX esta tudo funcionando corretamente.
