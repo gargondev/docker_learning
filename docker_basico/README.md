@@ -17,21 +17,21 @@ phpmyadmin/phpmyadmin     latest    2e5141bbcbfb   6 months ago   474MB
 
 ```
 
-### Inspecionar as imagem
+### Inspecionar as imagem.
 
 `docker image inspect b6f50 `
 
-Comando responsavel por informar todos os dados da imagem.
+Comando responsável por informar todos os dados da imagem.
 
-### Modos de Execução Container
+### Modos de Execução Container.
 
 #### Modo Interativo
 
-Este módo é recomentado para execução de testes.
+Este modo é recomentado para execução de testes.
 
 `docker run ubuntu bash --version`
 
-Comando acima mosta a versão do bash da imagem, neste nosso caso pedimos para baixar a imagem ubuntu, mostar a versão do bash.
+Comando acima mostra a versão do bash da imagem, neste nosso caso pedimos para baixar a imagem ubuntu, mostra a versão do bash.
 
 ```
 Unable to find image 'ubuntu:latest' locally
@@ -50,7 +50,7 @@ There is NO WARRANTY, to the extent permitted by law.
 
 Como foi pedido para somente verificar a versão do bash, o container é finalizado logo a execução do comando `bash --version`
 
-### Comando Run
+### Comando Run.
 
 #### Criando Container nome único
 
@@ -64,14 +64,13 @@ Comando acima criou um container com nome myubuntu, e entramos nele para interag
 CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
 444d0766e541   ubuntu         "bash"                   10 minutes ago   Exited (0) 9 minutes ago              myubuntu
 
+```
 
-``` 
 #### Reutilizando container criado pelo Run
 
 `docker start -ai myubuntu`
 
 O comando `start -ai` permite você interagir com container criado anteriormente.
-
 
 ### Mapeamento de portas com NGNIX.
 
@@ -108,4 +107,35 @@ Commercial support is available at
 </html>
 
 ```
+
 Podemos testar se deu certo acessando localhost:8080 `curl http://localhost:8080`, se a resposta devolver o html básico do NGINX esta tudo funcionando corretamente.
+
+Vale ressaltar que o mapeamento de portas é semelhante para qualquer outro serviço que você deseje expor uma porta.
+
+### Mapeamento de Pasta Diretórios.
+
+No diretório que vocês estiver trabalhando crie um arquivo que index.html e insira alguma informação nele.
+Vamos alterar a tela padrão do NGINX.
+
+`docker run -p 8080:80 -v $(pwd):/usr/share/nginx/html -d --name testeNGINX nginx`
+
+No comando acima o tem de novo é o `-v $(pwd):/usr/share/nginx/html`, neste nosso caso ele pega o conteúdo da pasta original onde você estiver e mapeia para o container no diretório /usr/share/nginx/html.
+
+```
+heliezer@hel:~/developer/study/docker_learning/docker_basico/test_Volume/html$ curl http://localhost:8080
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TesteDocker</title>
+</head>
+<body>
+    <h1>Teste Mapeamento de Volume diretórios Docker</h1>
+    <ul><li>Teste alteração</li></ul>
+</body>
+
+```
+
+Agora podemos ver que o conteúdo do html esta diferente do padrão do NGINX.
