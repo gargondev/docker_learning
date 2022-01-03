@@ -66,6 +66,8 @@ Hello Node World
 ```
 ### Docker Compose 
 
+O Docker Compose auxilia o gerenciamento de multiplos containers e integração entre eles.
+
 O Arquivo docker compose deve ter o seguinte nome `docker-compose.yml`.
 
 Exemplo docker compose nosso cenário.
@@ -91,5 +93,3 @@ Para subir o container.
 heliezer@hel:~/developer/study/docker_learning/docker_deixandoBasico/buildNodeExample$ curl localhost
 Hello Node World
 ```
-
-Para subir nosso container executamos.
