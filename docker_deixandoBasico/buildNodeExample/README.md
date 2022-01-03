@@ -64,3 +64,32 @@ Podemos ver o resultado.
 heliezer@hel:~/developer/study/docker_learning/docker_deixandoBasico$ curl localhost
 Hello Node World
 ```
+### Docker Compose 
+
+O Arquivo docker compose deve ter o seguinte nome `docker-compose.yml`.
+
+Exemplo docker compose nosso cenário.
+
+```
+version: '3'
+
+services:
+  app:
+    build: .
+    command: npm start
+    ports:
+      - "80:3000"
+    volumes:
+      - .:/usr/app
+```
+
+Para subir o container.
+
+`docker-compose up -d`
+
+```
+heliezer@hel:~/developer/study/docker_learning/docker_deixandoBasico/buildNodeExample$ curl localhost
+Hello Node World
+```
+
+Para subir nosso container executamos.

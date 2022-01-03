@@ -51,3 +51,6 @@ heliezer@hel:~/developer/study/docker_learning/docker_deixandoBasico/build$ curl
 <h1> Hello World Bild Docker!! </h1>
 ```
 
+### Exemplos com Docker Compose
+
+Aqui neste [README](buildNodeExample/README.md) podemos ver um exemplo básico de como montar uma imagem utilizando docker compose com NODEJS.
